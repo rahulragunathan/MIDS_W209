@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Sankey Diagram</title>
+<style>
+  #sankey_div {
+    height: 500px;
+  }
+
+  .node rect {
+    cursor: move;
+    fill-opacity: .9;
+    shape-rendering: crispEdges;
+  }
+
+  .node text {
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff;
+  }
+
+  .link {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .2;
+  }
+
+  .link:hover {
+    stroke-opacity: .5;
+  }
+	#sankey_header1 {
+	background-color: #969696;
+	width: 250px;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	display:inline-block;
+	}
+	#sankey_header2 {
+	background-color: #969696;
+	width: 250px;
+	height: 30px;
+	line-height: 30px;
+	color:#FFFFFF;
+	text-align: right;
+	display:inline-block;
+	}
+</style>
+</head>
+
+<body>
+<div id = "sankey_header1"></div>
+<div id = "sankey_header2"></div>
+<div id="sankey_div"></div>
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/d3-sankey@0"></script>
+<script src="js/sankey.js"></script>
+</body>
+</html>
