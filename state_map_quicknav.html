@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+
+
+.background {
+  fill: #eee;
+  pointer-events: all;
+}
+
+.map-layer {
+  fill: #fff;
+  stroke: #aaa;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.network-layer .link{
+  /*fill: #fff;*/
+  stroke: #ccc;
+  opacity: 0.9;
+}
+
+
+text{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 8px;
+  pointer-events: none;
+}
+
+#tooltip_bubbles {
+        position: absolute;
+        left: 800px;
+		top: 100px;	
+		width: 350px;
+        height: 250px;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+		
+}
+
+#tooltip_bubbles.hidden {
+        display: none;
+}
+
+#tooltip_bubbles p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+}
+#stat_per_capita.hidden {
+        display: none;
+}
+</style>
+<title>state map for quick nav on view 2</title>
+</head>
+
+<body>
+<svg></svg>
+<div id="tooltip_bubbles" class="hidden">
+	<p><strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span></strong><br /></p>
+        <p><strong>State: </strong><span id="bubble_name">100</span></p>
+        <p><strong>Value: </strong><span id="bubble_value">100</span></p>
+        <p>Click for county-level data for <span id="bubble_name">100</span></p>
+        <p><br /><br /><br />placeholder for histogram</p>
+</div>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+
+<script>
+	var state_summary_data;
+	var selected_statistic = "TO.WTotl";
+	var stat_per_capita = 1;
+	if (stat_per_capita == 0){
+		d3.select("#stat_per_capita").classed("hidden", true);
+	} else {
+		d3.select("#stat_per_capita").classed("hidden", false);
+	};
+	d3.csv("data/state_2010_limited.csv", function(data){state_summary_data = data});
+</script>
+<script src="js/force-directed.js"></script>
+</body>
+</html>
