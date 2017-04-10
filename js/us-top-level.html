@@ -5,6 +5,7 @@
 	<link rel="stylesheet" href="styles.css">
 	<script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
 	<script src="http://eyeseast.github.io/visible-data/components/queue.js" type="text/javascript"></script>
+	<script src="http://d3js.org/topojson.v1.min.js"></script>
 
 </head>
 <body>
@@ -18,7 +19,7 @@
 	<div class="content row">
 	<article class="post col-md-12">
 
-	<h3 id="caption">[State, County]</h3>
+	<h3 id="caption">[State, County, Total Water Usage:  XXXXXX </h3>
 
 	<div id="map">
     		<h4 class="loading">Loading...</h4>
@@ -27,17 +28,38 @@
 	<script type="text/javascript">
   	var margin = { top: 50, bottom: 50, right: 0, left: 0 };
   	var width = 960 - margin.right - margin.left;
+	var centered;
   	var height = 500;
-  	var path = d3.geo.path();
   	var map;
+
+	var tooltip = d3.select("body")
+		.append("div")
+		.style("position", "absolute")
+		.style("z-index", "10")
+		.style("visibility", "hidden")
+		.text("a simple tooltip");
+
+	// New
+	var projection = d3.geo.albersUsa()
+    		.scale(1070)
+    		.translate([width / 2, height / 2]);
+
+	//New
+	var path = d3.geo.path()
+    		.projection(projection);
+
+
 
 	var q = queue()
     		.defer(d3.json, "http://eyeseast.github.io/visible-data/data/gis/us-counties.json")
     		.defer(d3.json, "http://eyeseast.github.io/visible-data/data/gis/us-states.json")
+    		.defer(d3.json, "http://localhost:8888/data/county.json")
     		.await(state_county_selection);
 
 	var state_selection = " ";
-	function state_county_selection(error, county, state) {
+	var county_selection = " ";
+	function state_county_selection(error, county, state, county_data) {
+
 
     		if (error) throw error;
 
@@ -46,9 +68,10 @@
         		stateIds[d.id] = d.properties.name;
     		});
 
-    		county.features.forEach(function(d) {
-        		d.properties.state = stateIds[d.id.slice(0,2)];
-    		})
+		county.features.forEach(function(d) {
+        		d.fips = d.id;
+                        d.properties.state = stateIds[d.id.slice(0,2)];
+                })
 
     		// remove the loading text
     		d3.select('.loading').remove();
@@ -57,39 +80,136 @@
         		.style('width', width)
         		.style('height', height);
 
+
+		var svg = d3.select("body").append("svg")
+    			.attr("width", width)
+    			.attr("height", height)
+    			.on("click", clicked);
+
+
     		var counties = map.append('g')
         		.attr('class', 'counties')
       			.selectAll('path')
         		.data(county.features)
       			.enter().append('path')
-        		.attr('d', path);
+        		.attr('d', path)
+			.on("click", clicked)
+			.text(function(d) { return d.properties.name; })
+    			.on("mouseover", function(d){tooltip.text(d); return tooltip.style("visibility", "visible");})
+      			.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+      			.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
 
     		counties.on('mouseover', showCaption)
-        		.on('mousemove', showCaption)
         		.on('mouseout', function() {
-            		caption.html(starter);
-        	});
+            			caption.html(starter);
+        		});
 
     		var states = map.append('g')
         		.attr('class', 'states')
       			.selectAll('path')
         		.data(state.features)
       			.enter().append('path')
-        		.attr('d', path);
+        		.attr('d', path)
+			.on("click", clicked)
+			.text(function(d) { return d.properties.state; })
+    			.on("mouseover", function(d){tooltip.text(d); return tooltip.style("visibility", "visible");})
+      			.on("mousemove", function(){return tooltip.style("top", (d3.event.pageY-10)+"px").style("left",(d3.event.pageX+10)+"px");})
+      			.on("mouseout", function(){return tooltip.style("visibility", "hidden");});
+
+    		states.on('mouseover', showCaption)
+        		.on('mouseout', function() {
+            			caption.html(starter);
+        		});
 
     		var caption = d3.select('#caption')
       			, starter = caption.html();
 
     		function showCaption(d, i) {
-        		var name = [d.properties.name, d.properties.state].join(', ');
+			var county_index = d.properties.name;
+			console.log(d.properties.name);
+			console.log(d.fips);
+        		var top_line = [d.properties.state, d.properties.name, "Total usage:", county_data[d.fips].total_usage].join(', ');
+        		//var name = d.properties.state;
 			state_selection = d.properties.state;
-			console.log(state_selection);
-        		caption.html(name);
+			county_selection = d.properties.name;
+        		caption.html(top_line);
+
+
+			var sub_line1 = county_data[d.fips].water_source;
+			console.log(sub_line1);
     		}
 
-		console.log(state_selection);
 	};
 
+function clicked(d) {
+  	var x, y, k;
+
+	if (typeof(Storage) !== "undefined") {
+    		// Code for localStorage/sessionStorage.
+		sessionStorage.state_selection = state_selection;
+		sessionStorage.county_selection = county_selection;
+	} else {
+    		// Sorry! No Web Storage support..
+		console.log("SORRY, NO LOCAL STORAGE, PLEASE USE A DIFFERENT BROWSER!");
+	}
+	//console.log(sessionStorage.state_selection);
+	//console.log(sessionStorage.county_selection);
+  	
+
+	var svg = d3.select("body")
+  		.append("svg")
+  		.attr("width", "100%")
+  		.attr("height", "100%")
+  		.call(d3.behavior.zoom().on("zoom", function () {
+    		svg.attr("transform", "translate(" + d3.event.translate + ")" + " scale(" + d3.event.scale + ")")
+  		}))
+  		.append("g")
+// New
+//}
+
+
+//NEW
+//function clicked(d) {
+  //var x, y, k;
+
+
+  	if (d && centered !== d) {
+    		var centroid = path.centroid(d);
+    		x = centroid[0];
+    		y = centroid[1];
+    		k = 4;
+    		centered = d;
+  	} else {
+    		x = width / 2;
+    		y = height / 2;
+    		k = 1;
+    		centered = null;
+  	}
+
+	var svg = d3.select("body").append("svg")
+    		.attr("width", width)
+    		.attr("height", height);
+  
+	svg.append("rect")
+    		.attr("class", "background")
+    		.attr("width", width)
+    		.attr("height", height)
+    		.on("click", clicked);
+
+	var g = svg.append("g");
+
+  	g.selectAll("path")
+      		.classed("active", centered && function(d) { return d === centered; });
+
+  	g.transition()
+      		.duration(750)
+      		.attr("transform", "translate(" + width / 2 + "," + height / 2 + ")scale(" + k + ")translate(" + -x + "," + -y + ")")
+      		.style("stroke-width", 1.5 / k + "px");
+}
+
+function countyclicked(d) {
+  		//alert(d.id);
+}
 </script>
 </article>
 </body>

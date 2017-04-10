@@ -69,23 +69,43 @@ text{
 <div id="tooltip_bubbles" class="hidden">
 	<p><strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span></strong><br /></p>
         <p><strong>State: </strong><span id="bubble_name">100</span></p>
-        <p><strong>Value: </strong><span id="bubble_value">100</span></p>
+        <p><strong>Value: </strong><span id="bubble_value">100</span> million gallons per day</p>
         <p>Click for county-level data for <span id="bubble_name">100</span></p>
         <p><br /><br /><br />placeholder for histogram</p>
 </div>
+<div id = "selection_form">
+<form>
+	<h3>Select Data</h3>
+	<input type = "radio" name ="filter" value = "TO.WTotl" checked id = "All Water">All Water Use<br>
+	<h4>Water Source</h3>
+	<input type = "radio" name ="filter" value = "TO.WSWTo" id = "Surface Water">Surface Water
+	<input type = "radio" name ="filter" value = "TO.WGWTo" id = "Ground Water">Ground Water<br>
+	<h4>Water Type</h3>
+	<input type = "radio" name ="filter" value = "TO.WFrTo" id = "Fresh Water">Fresh Water
+	<input type = "radio" name ="filter" value = "TO.WFrTo" id = "Salinated Water">Salinated Water<br>
+	<h4>Water Use by Industry</h3>
+	<input type = "radio" name ="filter" value = "PS.Wtotl" id ="Public Supply" >Public Supply<br>
+	<input type = "radio" name ="filter" value = "DO.TOTAL" id = "Domestic">Domestic<br>
+	<input type = "radio" name ="filter" value = "IR.WFrTo" id = "Irrigation">Irrigation<br>
+	<input type = "radio" name ="filter" value = "LI.WFrTo" id = "Livestock">Livestock<br>
+	<input type = "radio" name ="filter" value = "AQ.WTotl" id = "Aquaculture">Aquaculture<br>
+	<input type = "radio" name ="filter" value = "MI.Wtotl" id = "Mining">Mining<br>
+	<input type = "radio" name ="filter" value = "PT.Wtotl" id = "Thermoelectric">Thermoelectric<br><br>
+	<input type="checkbox" id="percap_check" value="1"> Display as per Capita?<br><br>
+	<input type="button" value="Display Data", onClick="update_statistic(); graph_force_directed();">
+</form>
+</div>
 <script src="https://d3js.org/d3.v3.min.js"></script>
-
+<script src="js/force-directed.js"></script>
+<script src="js/define_selection.js"></script>
 <script>
 	var state_summary_data;
-	var selected_statistic = "TO.WTotl";
-	var stat_per_capita = 1;
-	if (stat_per_capita == 0){
-		d3.select("#stat_per_capita").classed("hidden", true);
-	} else {
-		d3.select("#stat_per_capita").classed("hidden", false);
-	};
+	var selected_statistic;
+	var stat_per_capita;
 	d3.csv("data/state_2010_limited.csv", function(data){state_summary_data = data});
+	update_statistic()
+	graph_force_directed()
 </script>
-<script src="js/force-directed.js"></script>
+
 </body>
 </html>
