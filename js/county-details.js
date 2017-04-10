@@ -42,9 +42,9 @@ var ind_svg, ind_xScale, ind_yScale, ind_xAxis, ind_xAxisSel, ind_yAxis, ind_yAx
 
 // Add SVG
 
-sg_svg = addSVG("body", "sg_svg", sg_chartWidth, sg_chartHeight, sg_chartMargin);
-fs_svg = addSVG("body", "fs_svg", fs_chartWidth, fs_chartHeight, fs_chartMargin);
-ind_svg = addSVG("body", "ind_svg", ind_chartWidth, ind_chartHeight, ind_chartMargin);
+sg_svg = addSVG("#sg_chart", "sg_svg", sg_chartWidth, sg_chartHeight, sg_chartMargin);
+fs_svg = addSVG("#fs_chart", "fs_svg", fs_chartWidth, fs_chartHeight, fs_chartMargin);
+ind_svg = addSVG("#ind_chart", "ind_svg", ind_chartWidth, ind_chartHeight, ind_chartMargin);
 
 // Define the Axes
 
