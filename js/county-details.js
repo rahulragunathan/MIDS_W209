@@ -46,46 +46,47 @@ sg_yAxisSel = sg_svg.append("g").attr("class", "y axis");
 d3.json(countyData_filePath, function(error, data) {
 
     // define arrays to hold data
-    var sg_chartData = [];
-    var sg_chartLabels = [];
-    var fs_chartData = [];
-    var fs_chartLabels = [];
+    // var sg_chartData = [];
+    // var sg_chartLabels = [];
+    // var fs_chartData = [];
+    // var fs_chartLabels = [];
 
     sg_sourceData = data[selectedCounty].water_source;
 
-    for (var i = 0; i < sg_sourceData.length; i++) {
-        sg_chartLabels.push(sg_sourceData[i].label);
-        sg_chartData.push(sg_sourceData[i].value);
-    }
+    // for (var i = 0; i < sg_sourceData.length; i++) {
+    //     sg_chartLabels.push(sg_sourceData[i].label);
+    //     sg_chartData.push(sg_sourceData[i].value);
+    // }
 
-    ind_sourceData = data[selectedCounty].water_type;
-
-    console.log(sg_chartData);
+    // ind_sourceData = data[selectedCounty].water_type;
+    //
+    // console.log(sg_chartData);
 
     // Determine domains for axes
-    sg_xScale.domain(d3.range(sg_chartLabels))
-        .rangeRoundBands([0, sg_chartWidth], 0.05);
+    // sg_xScale.domain(d3.range(sg_chartLabels))
+    //     .rangeRoundBands([0, sg_chartWidth], 0.05);
 
-    sg_yScale.domain([0, d3.max(sg_chartData)]);
+    // sg_yScale.domain([0, d3.max(sg_chartData)]);
 
     // Add bars to graph
     sg_svg.selectAll("rect")
-        .data(sg_chartData)
+        .data(sg_sourceData)
         .enter()
         .append("rect")
         .attr("x", function(d, i) {
             return sg_xScale(i);
         })
         .attr("y", function(d) {
-            return sg_chartHeight - sg_yScale(d); //Height minus data value
+            console.log(d.value);
+            return sg_chartHeight - sg_yScale(d.value); //Height minus data value
         })
         .attr("width", sg_xScale.rangeBand())
         .attr("height", function(d) {
-            return sg_yScale(d);
+            return sg_yScale(d.value);
         });
 
     // Draw axes on graph
-    sg_xAxisSel.call(sg_xAxis);
-    sg_yAxisSel.call(sg_yAxis);
+    // sg_xAxisSel.call(sg_xAxis);
+    // sg_yAxisSel.call(sg_yAxis);
 
 });
