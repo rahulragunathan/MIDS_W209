@@ -10,12 +10,12 @@ var sg_chartMargin = {
     bottom: 5,
     left: 10
 };
-sg_chartWidth = 200 - sg_chartMargin.left - sg_chartMargin.right;
-sg_chartHeight = 100 - sg_chartMargin.top - sg_chartMargin.bottom;
+sg_chartWidth = 400 - sg_chartMargin.left - sg_chartMargin.right;
+sg_chartHeight = 400 - sg_chartMargin.top - sg_chartMargin.bottom;
 
 var sg_svg, sg_xScale, sg_yScale, sg_xAxis, sg_xAxisSel, sg_yAxis, sg_yAxisSel;
 
-var sg_svg = d3.select("body")
+sg_svg = d3.select("body")
     .append("svg")
     .attr("id", "sg_svg")
     .attr("width", sg_chartWidth + sg_chartMargin.left + sg_chartMargin.right)
@@ -45,28 +45,11 @@ sg_yAxisSel = sg_svg.append("g").attr("class", "y axis");
 // load the data
 d3.json(countyData_filePath, function(error, data) {
 
-    // define arrays to hold data
-    // var sg_chartData = [];
-    // var sg_chartLabels = [];
-    // var fs_chartData = [];
-    // var fs_chartLabels = [];
-
     sg_sourceData = data[selectedCounty].water_source;
 
-    // for (var i = 0; i < sg_sourceData.length; i++) {
-    //     sg_chartLabels.push(sg_sourceData[i].label);
-    //     sg_chartData.push(sg_sourceData[i].value);
-    // }
-
-    // ind_sourceData = data[selectedCounty].water_type;
-    //
-    // console.log(sg_chartData);
-
     // Determine domains for axes
-    // sg_xScale.domain(d3.range(sg_chartLabels))
-    //     .rangeRoundBands([0, sg_chartWidth], 0.05);
-
-    // sg_yScale.domain([0, d3.max(sg_chartData)]);
+    sg_xScale.domain(d3.range(sg_sourceData.length));
+    sg_yScale.domain([0, d3.max(sg_sourceData, function(d) { return d.value; })]);
 
     // Add bars to graph
     sg_svg.selectAll("rect")
@@ -86,7 +69,7 @@ d3.json(countyData_filePath, function(error, data) {
         });
 
     // Draw axes on graph
-    // sg_xAxisSel.call(sg_xAxis);
-    // sg_yAxisSel.call(sg_yAxis);
+    sg_xAxisSel.call(sg_xAxis);
+    sg_yAxisSel.call(sg_yAxis);
 
 });
