@@ -1,7 +1,6 @@
-var yScaleFactor = 1.1;
+var yScaleFactor = 1.2;
 
-// Add SVG
-
+// Add SVG to DOM
 function addSVG(svg_div, svg_id, chartWidth, chartHeight, chartMargin) {
 
     svg = d3.select(svg_div)
@@ -17,8 +16,7 @@ function addSVG(svg_div, svg_id, chartWidth, chartHeight, chartMargin) {
 
 }
 
-// Define the Axes
-
+// Define the axes
 function defineAxes(svg, xScale, xAxis, xAxisSel, yScale, yAxis, yAxisSel, chartWidth, chartHeight) {
 
     xScale = d3.scale
@@ -36,8 +34,7 @@ function defineAxes(svg, xScale, xAxis, xAxisSel, yScale, yAxis, yAxisSel, chart
         .range([chartHeight, 0]);
     yAxis = d3.svg.axis()
         .scale(yScale)
-        .orient("left")
-        .ticks(10);
+        .orient("left");
     yAxisSel = svg.append("g")
         .attr("class", "y axis");
 
@@ -60,24 +57,53 @@ function setDomain(sourceData, xScale, yScale) {
     yScale.domain([0, yScaleFactor * d3.max(sourceData, function(d) {
         return d.value;
     })]);
+
 }
 
-// Add bars to graph
+// Add bars to SVG
 function addBars(svg, sourceData, xScale, chartHeight, yScale) {
-    svg.selectAll("rect")
+    svg.selectAll(".bar")
         .data(sourceData)
         .enter()
         .append("rect")
+        .attr("class", "bar")
         .attr("x", function(d) {
             return xScale(d.label);
         })
         .attr("y", function(d) {
-            return chartHeight - yScale(d.value);
+            return yScale(d.value);
         })
         .attr("width", xScale.rangeBand())
         .attr("height", function(d) {
-            return yScale(d.value);
+            return (yScale(0) - yScale(d.value));
         });
+    // .on("mouseover", function(d) {
+    //     svg.select("#barValues").classed("hidden", false);
+    // })
+    // .on("mouseout", function() {
+    //     svg.select("#barValues").classed("hidden", true);
+    // });
+
+    svg.selectAll("text")
+        .data(sourceData)
+        .enter()
+        .append("text")
+        .attr("id", "barValues")
+        // .attr("class", "hidden")
+        .text(function(d) {
+            return d.value;
+        })
+        .attr("x", function(d, i) {
+            return xScale(d.label) + xScale.rangeBand() / 2;
+        })
+        .attr("y", function(d) {
+            return yScale(d.value) - 5;
+        })
+        .attr("font-family", "sans-serif")
+        .attr("text-anchor", "middle")
+        .attr("font-size", "10px")
+        .attr("fill", "black");
+
 }
 
 // Draw axes on graph

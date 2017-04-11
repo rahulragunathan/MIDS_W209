@@ -6,31 +6,48 @@
     <title>County Details</title>
     <style type="text/css" src="css/main.css"></style>
     <style>
+        .axis {
+            font: 10px sans-serif;
+        }
 
-    .axis {
-  	  font: 10px sans-serif;
-  	}
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+            shape-rendering: crispEdges;
+        }
 
-  	.axis path,
-  	.axis line {
-  	  fill: none;
-  	  stroke: #000;
-  	  shape-rendering: crispEdges;
-  	}
+        .axis--x path {
+            display: none;
+        }
 
+        .bar {
+            fill: steelblue;
+        }
+
+        .bar:hover {
+            fill: green;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 
 </head>
 
 <body>
-  <div id="county_chart_container">
-      <div id="sg_chart"></div>
-      <div id="fs_chart"></div>
-      <div id="ind_chart"></div>
-  </div>
-  <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
-  <script src="js/define-county-chart.js" type="text/javascript"></script>
-  <script src="js/county-details.js" type="text/javascript"></script>
+    <div id="county_chart_container">
+        <div id="sg_chart">
+            <h3>Water Source</h3></div>
+        <div id="fs_chart">
+            <h3>Water Type</h3></div>
+        <div id="ind_chart">
+            <h3>Water Usage by Industry</h3></div>
+    </div>
+    <script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+    <script src="js/define-county-chart.js" type="text/javascript"></script>
+    <script src="js/county-details.js" type="text/javascript"></script>
 </body>
 
 </html>

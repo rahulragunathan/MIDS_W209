@@ -35,7 +35,7 @@ var ind_chartMargin = {
     bottom: 30,
     left: 40
 };
-ind_chartWidth = 500 - ind_chartMargin.left - ind_chartMargin.right;
+ind_chartWidth = 600 - ind_chartMargin.left - ind_chartMargin.right;
 ind_chartHeight = 400 - ind_chartMargin.top - ind_chartMargin.bottom;
 
 var ind_svg, ind_xScale, ind_yScale, ind_xAxis, ind_xAxisSel, ind_yAxis, ind_yAxisSel;
@@ -49,16 +49,28 @@ ind_svg = addSVG("#ind_chart", "ind_svg", ind_chartWidth, ind_chartHeight, ind_c
 // Define the Axes
 
 sg_Axes = defineAxes(sg_svg, sg_xScale, sg_xAxis, sg_xAxisSel, sg_yScale, sg_yAxis, sg_yAxisSel, sg_chartWidth, sg_chartHeight);
-sg_xScale = sg_Axes.xScale, sg_xAxis = sg_Axes.xAxis, sg_xAxisSel = sg_Axes.xAxisSel;
-sg_yScale = sg_Axes.yScale, sg_yAxis = sg_Axes.yAxis, sg_yAxisSel = sg_Axes.yAxisSel;
+sg_xScale = sg_Axes.xScale;
+sg_xAxis = sg_Axes.xAxis;
+sg_xAxisSel = sg_Axes.xAxisSel;
+sg_yScale = sg_Axes.yScale;
+sg_yAxis = sg_Axes.yAxis;
+sg_yAxisSel = sg_Axes.yAxisSel;
 
 fs_Axes = defineAxes(fs_svg, fs_xScale, fs_xAxis, fs_xAxisSel, fs_yScale, fs_yAxis, fs_yAxisSel, fs_chartWidth, fs_chartHeight);
-fs_xScale = fs_Axes.xScale, fs_xAxis = fs_Axes.xAxis, fs_xAxisSel = fs_Axes.xAxisSel;
-fs_yScale = fs_Axes.yScale, fs_yAxis = fs_Axes.yAxis, fs_yAxisSel = fs_Axes.yAxisSel;
+fs_xScale = fs_Axes.xScale;
+fs_xAxis = fs_Axes.xAxis;
+fs_xAxisSel = fs_Axes.xAxisSel;
+fs_yScale = fs_Axes.yScale;
+fs_yAxis = fs_Axes.yAxis;
+fs_yAxisSel = fs_Axes.yAxisSel;
 
 ind_Axes = defineAxes(ind_svg, ind_xScale, ind_xAxis, ind_xAxisSel, ind_yScale, ind_yAxis, ind_yAxisSel, ind_chartWidth, ind_chartHeight);
-ind_xScale = ind_Axes.xScale, ind_xAxis = ind_Axes.xAxis, ind_xAxisSel = ind_Axes.xAxisSel;
-ind_yScale = ind_Axes.yScale, ind_yAxis = ind_Axes.yAxis, ind_yAxisSel = ind_Axes.yAxisSel;
+ind_xScale = ind_Axes.xScale;
+ind_xAxis = ind_Axes.xAxis;
+ind_xAxisSel = ind_Axes.xAxisSel;
+ind_yScale = ind_Axes.yScale;
+ind_yAxis = ind_Axes.yAxis;
+ind_yAxisSel = ind_Axes.yAxisSel;
 
 // Load the Data
 d3.json(countyData_filePath, function(error, data) {
