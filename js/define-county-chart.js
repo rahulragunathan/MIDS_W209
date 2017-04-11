@@ -1,4 +1,4 @@
-var yScaleFactor = 1.2;
+var yScaleFactor = 1.1;
 
 // Add SVG to DOM
 function addSVG(svg_div, svg_id, chartWidth, chartHeight, chartMargin) {
