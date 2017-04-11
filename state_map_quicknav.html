@@ -102,6 +102,7 @@ text{
 	var state_summary_data;
 	var selected_statistic;
 	var stat_per_capita;
+	var state_fips;
 	d3.csv("data/state_2010_limited.csv", function(data){state_summary_data = data});
 	update_statistic()
 	graph_force_directed()

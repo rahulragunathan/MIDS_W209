@@ -46,7 +46,7 @@ function graph_force_directed(){
 
 
 	// Load map data
-	d3.json('http://eyeseast.github.io/visible-data/data/gis/us-states.json', function(error, mapData) {
+	d3.json('data/geo_state.json', function(error, mapData) {
 
 		// Merge state water data
 		// Build in ability to change statistic based on user selection
@@ -182,7 +182,11 @@ function graph_force_directed(){
 				.text(formatCount(d.properties.value));
 			d3.select("#tooltip_bubbles").classed("hidden", false);})
 		.on("mouseout",function(){	
-			d3.select("#tooltip_bubbles").classed("hidden", true);});
+			d3.select("#tooltip_bubbles").classed("hidden", true);})
+		.on("click", function(d){
+			state_fips = d.id;
+			draw_state_map()
+		});
 
 
 

@@ -1,0 +1,281 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style type="text/css" src="css/main.css"></style>
+<style>
+
+
+.background {
+  fill: #eee;
+  pointer-events: all;
+}
+
+.map-layer {
+  fill: #fff;
+  stroke: #aaa;
+  opacity: 0.15;
+  pointer-events: none;
+}
+
+.network-layer .link{
+  /*fill: #fff;*/
+  stroke: #ccc;
+  opacity: 0.9;
+}
+
+
+text{
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  font-size: 8px;
+  pointer-events: none;
+}
+
+#tooltip_bubbles {
+        position: absolute;
+        left: 850px;
+		top: 100px;	
+		width: 350px;
+        height: 250px;
+        padding: 10px;
+        background-color: white;
+        -webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+		
+}
+
+#tooltip_bubbles.hidden {
+        display: none;
+}
+
+#tooltip_bubbles p {
+        margin: 0;
+        font-family: sans-serif;
+        font-size: 16px;
+        line-height: 20px;
+}
+#stat_per_capita.hidden {
+        display: none;
+}
+
+.counties path {
+  stroke: #2F2F2F;
+  stroke-width: .5px;
+  stroke-opacity: .3;
+  fill: grey;
+}
+
+.states {
+  stroke: #fff;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.counties path:hover {
+  fill: red;
+}
+#view_two {
+        position: absolute;
+        left: 400px;
+		top: 0px;	
+		/*width: 1200px;
+        height: 250px;*/
+        padding: 10px;
+        background-color: white;
+        /*-webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);*/
+
+		
+}
+
+#view_two.hidden {
+        display: none;
+}
+	#state_map{
+		background-color: #eee;
+	}
+
+	.state_map_full {
+		display: inline-block;
+		
+	}	
+	#sankey_full {
+		display: inline-block;
+		vertical-align:top;
+	}	
+	
+	  #sankey_div {
+    height: 500px;
+  }
+
+  .node rect {
+    cursor: move;
+    fill-opacity: .9;
+    shape-rendering: crispEdges;
+  }
+
+  .node text {
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff;
+  }
+
+  .link {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .2;
+  }
+
+  .link:hover {
+    stroke-opacity: .5;
+  }
+	#sankey_header1 {
+	background-color: #969696;
+	width: 250px;
+	height: 30px;
+	line-height: 30px;
+	text-align: left;
+	display:inline-block;
+	}
+	#sankey_header2 {
+	background-color: #969696;
+	width: 250px;
+	height: 30px;
+	line-height: 30px;
+	color:#FFFFFF;
+	text-align: right;
+	display:inline-block;
+	}
+
+	.axis {
+		font: 10px sans-serif;
+	}
+
+	.axis path,
+	.axis line {
+		fill: none;
+		stroke: #000;
+		shape-rendering: crispEdges;
+	}
+
+	.axis--x path {
+		display: none;
+	}
+
+	.bar {
+		fill: steelblue;
+	}
+
+	.bar:hover {
+		fill: green;
+	}
+
+	.hidden {
+		display: none;
+	}
+	
+	#county_chart_container{
+		display:inline-block;
+		vertical-align:top;
+		
+	}
+	#county_view{
+		display:inline-block;
+		vertical-align:top;
+	}
+</style>
+<title>integrated view</title>
+</head>
+
+<body>
+<svg></svg>
+
+<div id = "selection_form">
+<form>
+	<h3>Select Data</h3>
+	<input type = "radio" name ="filter" value = "TO.WTotl" checked id = "All Water">All Water Use<br>
+	<h4>Water Source</h3>
+	<input type = "radio" name ="filter" value = "TO.WSWTo" id = "Surface Water">Surface Water
+	<input type = "radio" name ="filter" value = "TO.WGWTo" id = "Ground Water">Ground Water<br>
+	<h4>Water Type</h3>
+	<input type = "radio" name ="filter" value = "TO.WFrTo" id = "Fresh Water">Fresh Water
+	<input type = "radio" name ="filter" value = "TO.WFrTo" id = "Salinated Water">Salinated Water<br>
+	<h4>Water Use by Industry</h3>
+	<input type = "radio" name ="filter" value = "PS.Wtotl" id ="Public Supply" >Public Supply<br>
+	<input type = "radio" name ="filter" value = "DO.TOTAL" id = "Domestic">Domestic<br>
+	<input type = "radio" name ="filter" value = "IR.WFrTo" id = "Irrigation">Irrigation<br>
+	<input type = "radio" name ="filter" value = "LI.WFrTo" id = "Livestock">Livestock<br>
+	<input type = "radio" name ="filter" value = "AQ.WTotl" id = "Aquaculture">Aquaculture<br>
+	<input type = "radio" name ="filter" value = "MI.Wtotl" id = "Mining">Mining<br>
+	<input type = "radio" name ="filter" value = "PT.Wtotl" id = "Thermoelectric">Thermoelectric<br><br>
+	<input type="checkbox" id="percap_check" value="1"> Display as per Capita?<br><br>
+	<input type="button" value="Display Data", onClick="update_statistic(); graph_force_directed(); draw_state_map();">
+</form>
+
+
+
+</div>
+	<div id="view_two">
+		<div class="state_map_full">
+
+			<h3 id="caption">[State, County]</h3>
+
+			<div id="state_map">
+					<h4 class="loading">Loading...</h4>
+			</div>
+		</div>
+		<div id = "county_view">
+			<div id = "sankey_full">
+				<!--<div id = "sankey_header1"></div>
+				<div id = "sankey_header2"></div> -->
+				<div id="sankey_div"></div>
+			</div>
+			    <div id="county_chart_container">
+			<div id="sg_chart">
+				<h3>Water Source</h3></div>
+			<div id="fs_chart">
+				<h3>Water Type</h3></div>
+			<div id="ind_chart">
+            <h3>Water Usage by Industry</h3></div>
+    </div>
+		</div>
+	</div>
+	
+	<div id="tooltip_bubbles" class="hidden">
+		<p><strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span></strong><br /></p>
+        <p><strong>State: </strong><span id="bubble_name">100</span></p>
+        <p><strong>Value: </strong><span id="bubble_value">100</span> million gallons per day</p>
+        <p>Click for county-level data for <span id="bubble_name">100</span></p>
+        <p><br /><br /><br />placeholder for histogram</p>
+	</div>
+
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="https://unpkg.com/d3-sankey@0" type="text/javascript"></script>
+<script type="text/javascript">var d3_v4 = d3;</script>
+<script src="https://d3js.org/d3.v3.min.js"></script>
+<script src="js/define-county-chart.js" type="text/javascript"></script>
+<script src="js/county-details.js" type="text/javascript"></script>
+<script src="http://eyeseast.github.io/visible-data/components/queue.js" type="text/javascript"></script>
+<script src="js/state_map.js" type="text/javascript"></script>
+<script src="js/force-directed.js" type="text/javascript"></script>
+<script src="js/define_selection.js" type="text/javascript"></script>
+
+<script src="js/sankey.js" type="text/javascript"></script>
+<script>
+	var state_summary_data;
+	var selected_statistic;
+	var stat_per_capita;
+	var state_fips;
+	var county_fips
+	d3.csv("data/state_2010_limited.csv", function(data){state_summary_data = data});
+	update_statistic()
+	graph_force_directed()
+</script>
+
+</body>
+</html>

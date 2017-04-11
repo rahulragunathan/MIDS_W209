@@ -1,0 +1,71 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Untitled Document</title>
+<style>
+	
+.counties path {
+  stroke: #fff;
+  stroke-width: .5px;
+  stroke-opacity: .05;
+  fill: grey;
+}
+
+.states {
+  stroke: #fff;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.counties path:hover {
+  fill: red;
+}
+#view_two {
+        position: absolute;
+        left: 400px;
+		top: 0px;	
+		/*width: 1200px;
+        height: 250px;*/
+        padding: 10px;
+        background-color: white;
+        /*-webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);*/
+
+		
+}
+
+#view_two.hidden {
+        display: none;
+}
+</style>
+</head>
+
+<body>
+	<div id="view_two">
+		<div class="state_map_full">
+
+			<h3 id="caption">[State, County]</h3>
+
+			<div id="state_map">
+					<h4 class="loading">Loading...</h4>
+			</div>
+		</div>
+	</div>
+	
+	<script src="http://d3js.org/d3.v3.min.js" type="text/javascript"></script>
+	<script src="http://eyeseast.github.io/visible-data/components/queue.js" type="text/javascript"></script>
+	<script src="js/state_map.js" type="text/javascript"></script>
+	<script>
+		var state_fips = "06";
+		var selected_statistic = "TO.WTotl";
+		var stat_per_capita = 0;
+		var county_fips
+		draw_state_map();</script>
+	
+	
+	
+</body>
+</html>
