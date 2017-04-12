@@ -5,6 +5,10 @@ function draw_state_map(){
 	var margin = { top: 50, bottom: 50, right: 0, left: 0 };
   	var width = 500 - margin.right - margin.left;
   	var height = 400;
+	var selection = selected_statistic;
+	if (stat_per_capita == 1){
+		selection = selection + "_per"
+	};
 	
 
   	var map;
@@ -40,7 +44,7 @@ function draw_state_map(){
 
     		county.features.forEach(function(d) {
         		d.properties.state = stateIds[d.id.slice(0,2)];
-				selected_statistic_array.push(d.properties[selected_statistic])
+				selected_statistic_array.push(d.properties[selection])
     		})
 
     		// remove the loading text
@@ -90,7 +94,7 @@ function draw_state_map(){
         		.attr('d', path);
 			counties
 				.style("fill", function(d){
-				return color(d.properties[selected_statistic])
+				return color(d.properties[selection])
 			})
 
     		counties.on('mouseover', showCaption)
@@ -125,7 +129,7 @@ function draw_state_map(){
         		var name = [d.properties.name, d.properties.state].join(', ');
 			state_selection = d.properties.state;
 				d3.select("#county_hover").text(name);
-				d3.select("#county_hover_stat").text(d.properties[selected_statistic])
+				d3.select("#county_hover_stat").text(d.properties[selection])
 			console.log(state_selection);
         		caption.html(name);
 				d3.select('#tooltip_state_map').classed('hidden', false);
