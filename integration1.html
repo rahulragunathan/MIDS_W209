@@ -5,7 +5,6 @@
 <style type="text/css" src="css/main.css"></style>
 <style>
 
-
 .background {
   fill: #eee;
   pointer-events: all;
@@ -52,11 +51,32 @@ text{
         display: none;
 }
 
-#tooltip_bubbles p {
+#tooltip_state_map p {
         margin: 0;
         font-family: sans-serif;
         font-size: 16px;
         line-height: 20px;
+}
+	
+	#tooltip_state_map {
+        position: absolute;
+        left: 0px;
+		top: 0px;	
+		width: 375px;
+        height: 225px;
+        padding: 10px;
+        background-color: white;
+		-webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        pointer-events: none;
+
+		
+}
+
+#tooltip_state_map.hidden {
+        display: none;
 }
 #stat_per_capita.hidden {
         display: none;
@@ -172,7 +192,7 @@ text{
 	}
 
 	.bar {
-		fill: steelblue;
+		fill: #409A99;
 	}
 
 	.bar:hover {
@@ -263,6 +283,12 @@ text{
         <p><strong>State: </strong><span id="bubble_name">100</span></p>
         <p><strong>Value: </strong><span id="bubble_value">100</span> million gallons per day</p>
         <p>Click for county-level data for <span id="bubble_name">100</span></p>
+        <p><br /><br /><br />placeholder for histogram</p>
+	</div>
+	<div id="tooltip_state_map" class="hidden">
+		<p><strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span></strong><br /></p>
+        <p><strong>County: </strong><span id="county_hover">100</span></p>
+        <p><strong>Value: </strong><span id="county_hover_stat">100</span> million gallons per day</p>
         <p><br /><br /><br />placeholder for histogram</p>
 	</div>
 

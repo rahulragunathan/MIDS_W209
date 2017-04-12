@@ -97,6 +97,7 @@ function draw_state_map(){
         		.on('mousemove', showCaption)
         		.on('mouseout', function() {
             		caption.html(starter);
+					d3.select('#tooltip_state_map').classed('hidden', true);
         	})
 				.on('click', function(d){
 					county_fips = d.id;
@@ -123,8 +124,11 @@ function draw_state_map(){
     		function showCaption(d, i) {
         		var name = [d.properties.name, d.properties.state].join(', ');
 			state_selection = d.properties.state;
+				d3.select("#county_hover").text(name);
+				d3.select("#county_hover_stat").text(d.properties[selected_statistic])
 			console.log(state_selection);
         		caption.html(name);
+				d3.select('#tooltip_state_map').classed('hidden', false);
     		}
 
 		console.log(state_selection);
