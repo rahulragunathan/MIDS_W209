@@ -185,13 +185,18 @@ text{
 	
 	#county_chart_container{
 		display:inline-block;
-		vertical-align:top;
+
 		
 	}
-	#county_view{
-		display:inline-block;
-		vertical-align:top;
-	}
+
+	#county_header{
+	background-color: #409A99;
+	width: 1000px;
+	height: 30px;
+	line-height: 30px;
+	color:#FFFFFF;
+	text-align: center;	
+}
 </style>
 <title>integrated view</title>
 </head>
@@ -225,29 +230,32 @@ text{
 
 </div>
 	<div id="view_two">
-		<div class="state_map_full">
-
-			<h3 id="caption">[State, County]</h3>
-
-			<div id="state_map">
-					<h4 class="loading">Loading...</h4>
-			</div>
-		</div>
+		<div id = "county_header">Click a county for more details</div>
 		<div id = "county_view">
-			<div id = "sankey_full">
-				<!--<div id = "sankey_header1"></div>
-				<div id = "sankey_header2"></div> -->
-				<div id="sankey_div"></div>
+			<div class="state_map_full">
+
+				<h3 id="caption">[State, County]</h3>
+
+				<div id="state_map">
+						<h4 class="loading">Loading...</h4>
+				</div>
 			</div>
-			    <div id="county_chart_container">
-			<div id="sg_chart">
+
+				<div id = "sankey_full">
+					<!--<div id = "sankey_header1"></div>
+					<div id = "sankey_header2"></div> -->
+					<div id="sankey_div"></div>
+				</div>
+		    </div>
+		<div id="county_chart_container">
+			<div id="sg_chart" style = "display:inline-block;">
 				<h3>Water Source</h3></div>
-			<div id="fs_chart">
+			<div id="fs_chart" style = "display:inline-block;">
 				<h3>Water Type</h3></div>
-			<div id="ind_chart">
+			<div id="ind_chart" style = "display:inline-block;">
             <h3>Water Usage by Industry</h3></div>
-    </div>
-		</div>
+    	</div>
+		
 	</div>
 	
 	<div id="tooltip_bubbles" class="hidden">
@@ -275,7 +283,8 @@ text{
 	var selected_statistic;
 	var stat_per_capita;
 	var state_fips;
-	var county_fips
+	var county_fips;
+	var current_county_name;
 	d3.csv("data/state_2010_limited.csv", function(data){state_summary_data = data});
 	update_statistic()
 	graph_force_directed()

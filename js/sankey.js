@@ -8,8 +8,8 @@ function display_sankey(){
 		bottom: 6,
 		left: 1
 	  },
-	  sankey_width = 300 - sankey_margin.left - sankey_margin.right,
-	  sankey_height = 700 - sankey_margin.top - sankey_margin.bottom;
+	  sankey_width = 500 - sankey_margin.left - sankey_margin.right,
+	  sankey_height = 450 - sankey_margin.top - sankey_margin.bottom;
 
 	var formatNumber = d3.format(",.2f"),
 	  format = function(d) {

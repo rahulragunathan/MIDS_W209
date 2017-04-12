@@ -15,8 +15,8 @@ function draw_county_charts(){
 		bottom: 30,
 		left: 40
 	};
-	sg_chartWidth = 300 - sg_chartMargin.left - sg_chartMargin.right;
-	sg_chartHeight = 400 - sg_chartMargin.top - sg_chartMargin.bottom;
+	sg_chartWidth = 250 - sg_chartMargin.left - sg_chartMargin.right;
+	sg_chartHeight = 250 - sg_chartMargin.top - sg_chartMargin.bottom;
 
 	var sg_svg, sg_xScale, sg_yScale, sg_xAxis, sg_xAxisSel, sg_yAxis, sg_yAxisSel;
 
@@ -27,8 +27,8 @@ function draw_county_charts(){
 		bottom: 30,
 		left: 40
 	};
-	fs_chartWidth = 300 - fs_chartMargin.left - fs_chartMargin.right;
-	fs_chartHeight = 400 - fs_chartMargin.top - fs_chartMargin.bottom;
+	fs_chartWidth = 250 - fs_chartMargin.left - fs_chartMargin.right;
+	fs_chartHeight = 250 - fs_chartMargin.top - fs_chartMargin.bottom;
 
 	var fs_svg, fs_xScale, fs_yScale, fs_xAxis, fs_xAxisSel, fs_yAxis, fs_yAxisSel;
 
@@ -39,8 +39,8 @@ function draw_county_charts(){
 		bottom: 30,
 		left: 40
 	};
-	ind_chartWidth = 600 - ind_chartMargin.left - ind_chartMargin.right;
-	ind_chartHeight = 400 - ind_chartMargin.top - ind_chartMargin.bottom;
+	ind_chartWidth = 500 - ind_chartMargin.left - ind_chartMargin.right;
+	ind_chartHeight = 250 - ind_chartMargin.top - ind_chartMargin.bottom;
 
 	var ind_svg, ind_xScale, ind_yScale, ind_xAxis, ind_xAxisSel, ind_yAxis, ind_yAxisSel;
 

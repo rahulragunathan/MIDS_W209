@@ -4,7 +4,7 @@ function draw_state_map(){
 	
 	var margin = { top: 50, bottom: 50, right: 0, left: 0 };
   	var width = 500 - margin.right - margin.left;
-  	var height = 500;
+  	var height = 400;
 	
 
   	var map;
@@ -106,6 +106,7 @@ function draw_state_map(){
 					.classed('counties_selected', false);
 					d3.select(this)
 					.classed('counties_selected', true);
+					d3.select('#county_header').text(d.properties.name)
 
 				
 			});
