@@ -100,8 +100,13 @@ function draw_state_map(){
         	})
 				.on('click', function(d){
 					county_fips = d.id;
-					draw_county_charts()
+					draw_county_charts();
 					display_sankey();
+					d3.select('.counties_selected')
+					.classed('counties_selected', false);
+					d3.select(this)
+					.classed('counties_selected', true);
+
 				
 			});
 
