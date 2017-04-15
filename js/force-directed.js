@@ -1,8 +1,8 @@
 function graph_force_directed(){
-	var width = 400,
-		height = 250,
+	var width = 1500,
+		height = 600,
 		centered,
-		sqWidth = 12;
+		sqWidth = 20;
 
 	//height and width for hover box
 	var tool_bubbles_w = 350;
@@ -12,12 +12,12 @@ function graph_force_directed(){
 		.attr("height", tool_bubbles_h +"px");
 	//format value in hover box
 	d3.selectAll('#selected_statistic').text(document.querySelector('input[name="filter"]:checked').id);
-	d3.select('#selection_form')
-		.style("width", width +"px");
+	//d3.select('#selection_form')
+	//	.style("width", width +"px");
 	var formatCount = d3.format(",.2f");
 
 	var projection = d3.geo.mercator()
-	  .scale(350)
+	  .scale(900)
 	  // Center the Map in USA
 	  .center([ -95, 39 ])
 	  .translate([width / 2, height / 2]);
@@ -26,7 +26,7 @@ function graph_force_directed(){
 	  .projection(projection);
 
 	// Set svg width & height
-	var svg = d3.select('svg')
+	var svg = d3.select('#force_directed_svg')
 	  .attr('width', width)
 	  .attr('height', height);
 
@@ -46,7 +46,7 @@ function graph_force_directed(){
 
 
 	// Load map data
-	d3.json('data/geo_state.json', function(error, mapData) {
+	d3.json('data/geo_state_contiguous.json', function(error, mapData) {
 
 		// Merge state water data
 		// Build in ability to change statistic based on user selection
@@ -87,9 +87,9 @@ function graph_force_directed(){
 
 
 		var color = d3.scale.linear()
-		  .domain([min_state_data, max_state_data])
+		  .domain([0, max_state_data])
 		  .clamp(true)
-		  .range(['#fff', '#409A99']);
+		  .range(['#fff', '#006EB4']);
 
 	  var links =[];
 	  var features = mapData.features;
@@ -170,22 +170,18 @@ function graph_force_directed(){
 		.on("mouseover", function(d){
 			//var xPosition = parseFloat(d3.select(this).attr("cx")) + 20;
 			//var yPosition = parseFloat(d3.select(this).attr("cy"));
-			d3.select("#tooltip_bubbles")
-			//	.style("left", xPosition +"px")
-			//	.style("top", yPosition +"px")
-				.style("left", width +"px")
-				.style("top", 0 +"px")
-			  .selectAll("#bubble_name")
+			d3.selectAll("#bubble_name")
 				.text(d.properties.name);
-			d3.select("#tooltip_bubbles")
-			  .select("#bubble_value")
+			  d3.selectAll("#bubble_value")
 				.text(formatCount(d.properties.value));
-			d3.select("#tooltip_bubbles").classed("hidden", false);})
-		.on("mouseout",function(){	
-			d3.select("#tooltip_bubbles").classed("hidden", true);})
+		})
 		.on("click", function(d){
 			state_fips = d.id;
-			draw_state_map()
+			draw_state_map();
+			d3.select("#force_directed_div").classed("hidden", true);
+			d3.select("#map_state_div").classed("hidden", false);
+			current_window = "map_state"
+			update_button()
 		});
 
 
