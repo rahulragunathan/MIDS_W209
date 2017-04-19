@@ -17,7 +17,7 @@ function addSVG(svg_div, svg_id, chartWidth, chartHeight, chartMargin) {
 }
 
 // Define the axes
-function defineAxes(svg, xScale, xAxis, xAxisSel, yScale, yAxis, yAxisSel, chartWidth, chartHeight) {
+function defineAxes(svg, xScale, xAxis, xAxisSel, yScale, yAxis, yAxisSel, chartWidth, chartHeight, chartMargin) {
 
     xScale = d3.scale
         .ordinal()
@@ -37,6 +37,16 @@ function defineAxes(svg, xScale, xAxis, xAxisSel, yScale, yAxis, yAxisSel, chart
         .orient("left");
     yAxisSel = svg.append("g")
         .attr("class", "y axis");
+
+    // add y-axis label
+    // yAxisLabelOffset_vert = 0; //chartMargin.left / 2;
+    // yAxisLabelOffset_hor = 0; //chartHeight / 2;
+    // // svg.append("text")
+    // // .text("Millions of Gallons per Day")
+    // //     // .attr("transform", "translate(" + yAxisLabelOffset_hor + "," + yAxisLabelOffset_vert + ")")
+    // //     .attr("transform", "rotate(-90)")
+    // //     .attr("dy", "1em")
+    // //     .style("text-anchor", "middle");
 
     return {
         xScale: xScale,
@@ -61,8 +71,9 @@ function setDomain(sourceData, xScale, yScale) {
 }
 
 // Add bars to SVG
-function addBars(svg, sourceData, xScale, chartHeight, yScale) {
-    svg.selectAll(".bar")
+function addBars(svg, sourceData, xScale, chartHeight, yScale, total_usage) {
+
+    bars = svg.selectAll(".bar")
         .data(sourceData)
         .enter()
         .append("rect")
@@ -77,13 +88,20 @@ function addBars(svg, sourceData, xScale, chartHeight, yScale) {
         .attr("height", function(d) {
             return (yScale(0) - yScale(d.value));
         });
-    // .on("mouseover", function(d) {
-    //     svg.select("#barValues").classed("hidden", false);
-    // })
-    // .on("mouseout", function() {
-    //     svg.select("#barValues").classed("hidden", true);
-    // });
 
+    var formatNumber = d3.format(",.2f"),
+        format = function(d) {
+            return formatNumber(d);
+        };
+
+    // hover title text for individual bars
+    bars.append("title")
+        .text(function(d) {
+            return d.label + "\n" + format(d.value) + " Million Galllons per Day" +
+                "\nPercent of Total Water Use for This County: " + format((d.value / total_usage) * 100);
+        });
+
+    // values are also displayed on top of bars
     svg.selectAll("text")
         .data(sourceData)
         .enter()
@@ -91,7 +109,7 @@ function addBars(svg, sourceData, xScale, chartHeight, yScale) {
         .attr("id", "barValues")
         // .attr("class", "hidden")
         .text(function(d) {
-            return d.value;
+            return format(d.value);
         })
         .attr("x", function(d, i) {
             return xScale(d.label) + xScale.rangeBand() / 2;
@@ -101,7 +119,7 @@ function addBars(svg, sourceData, xScale, chartHeight, yScale) {
         })
         .attr("font-family", "sans-serif")
         .attr("text-anchor", "middle")
-        .attr("font-size", "10px")
+        // .attr("font-size", "14px")
         .attr("fill", "black");
 
 }
@@ -110,4 +128,5 @@ function addBars(svg, sourceData, xScale, chartHeight, yScale) {
 function drawAxes(xAxis, xAxisSel, yAxis, yAxisSel) {
     xAxisSel.call(xAxis);
     yAxisSel.call(yAxis);
+
 }

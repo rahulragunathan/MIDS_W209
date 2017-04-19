@@ -1,0 +1,356 @@
+@charset "utf-8";
+.background {
+    fill: #FCFCFC;
+    pointer-events: all;
+}
+
+.map-layer {
+    fill: #EFEFEF;
+    stroke: #5A5A5A;
+    opacity: 0.25;
+    pointer-events: none;
+}
+
+.network-layer .link {
+    /*fill: #fff;*/
+    stroke: #ccc;
+    opacity: 0.9;
+}
+
+svg text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: bold;
+    font-size: 10px;
+}
+
+h3 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+h4 {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 14px;
+}
+
+text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    font-size: 8px;
+    pointer-events: none;
+}
+
+p, span, strong {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+
+#tooltip_bubbles {
+    position: absolute;
+    left: 850px;
+    top: 100px;
+    width: 350px;
+    height: 250px;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#tooltip_bubbles.hidden {
+    display: none;
+}
+
+#tooltip_state_map p {
+    margin: 0;
+    font-family: sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+#tooltip_state_map {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 375px;
+    height: 225px;
+    padding: 10px;
+    background-color: white;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+    pointer-events: none;
+}
+
+#tooltip_state_map.hidden {
+    display: none;
+}
+
+#stat_per_capita.hidden {
+    display: none;
+}
+
+.counties_selected {
+    stroke-width: 3px !important;
+    stroke-opacity: .9 !important;
+}
+
+.counties path {
+    stroke: #2F2F2F;
+    stroke-width: .5px;
+    stroke-opacity: .4;
+    fill: grey;
+}
+
+.states {
+    stroke: #2F2F2F;
+    stroke-width: 1px;
+    stroke-opacity: .3;
+    fill: none;
+}
+
+.counties path:hover {
+    fill: red;
+}
+
+#view_two {
+    position: absolute;
+    left: 400px;
+    top: 0px;
+    /*width: 1200px;
+        height: 250px;*/
+    padding: 10px;
+    background-color: white;
+    /*-webkit-border-radius: 10px;
+        border-radius: 10px;
+        -webkit-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);
+        box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.4);*/
+}
+
+#view_two.hidden {
+    display: none;
+}
+
+#state_map {
+    background-color: #eee;
+}
+
+.state_map_full {
+    display: inline-block;
+}
+
+.node rect {
+    cursor: move;
+    fill-opacity: .9;
+    shape-rendering: crispEdges;
+}
+
+.node text {
+    pointer-events: none;
+    text-shadow: 0 1px 0 #fff;
+}
+
+.link {
+    fill: none;
+    stroke: #000;
+    stroke-opacity: .2;
+}
+
+.link:hover {
+    stroke-opacity: .5;
+}
+
+#sankey_header1 {
+    background-color: #969696;
+    width: 250px;
+    height: 30px;
+    line-height: 30px;
+    text-align: left;
+    display: inline-block;
+}
+
+#sankey_header2 {
+    background-color: #969696;
+    width: 250px;
+    height: 30px;
+    line-height: 30px;
+    color: #FFFFFF;
+    text-align: right;
+    display: inline-block;
+}
+
+.axis {
+    font: 10px sans-serif;
+}
+
+.axis path, .axis line {
+    fill: none;
+    stroke: #000;
+    shape-rendering: crispEdges;
+}
+
+.axis--x path {
+    display: none;
+}
+
+.bar {
+    fill: #409A99;
+}
+
+.bar:hover {
+    fill: green;
+}
+
+.hidden {
+    display: none !important;
+}
+
+#county_chart_container {
+    display: inline-block;
+}
+
+#county_header {
+    background-color: #265D5D;
+    width: 1000px;
+    height: 30px;
+    line-height: 30px;
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 18px;
+}
+
+.inline_div {
+    display: inline-block;
+}
+
+#switch_graphs {
+    background-color: #409A99;
+    width: 1500px;
+    height: 40px;
+    line-height: 40px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+#switch_graphs:hover {
+    background-color: #245757;
+}
+
+#force_directed_div {
+    /*height: 600px;
+    width: 1400px;*/
+    /*display: inline-block;*/
+    vertical-align: top;
+}
+
+#state_map_views {
+    display: inline-block;
+}
+
+#force_directed_svg {
+    position: relative;
+    float: left;
+}
+
+#map_state_map {
+    position: relative;
+    float: right;
+}
+
+#selection_form {
+    width: 1500px;
+}
+
+#map_full_div {
+    height: 600px;
+    width: 1400px;
+    display: inline-block;
+    vertical-align: top;
+}
+
+#map_state_div {
+    /*height: 600px;
+    width: 1400px;*/
+    display: inline-block;
+    vertical-align: top;
+}
+
+.overlay {
+    position: fixed;
+    top: 30px;
+    left: 5%;
+    width: 90%;
+    background-color: white;
+}
+
+#sankey_full {
+    text-align: center;
+}
+
+#sankey_div {
+    text-align: center;
+    /*height: 500px;*/
+}
+
+#county_header_container {
+    width: 100%;
+    display: inline-block;
+}
+
+#county_header {
+    background-color: #409A99;
+    float: left;
+    width: 95%;
+    height: 10%;
+    line-height: 30px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+#county_closeBtn {
+    background-color: #409A99;
+    width: 5%;
+    height: 10%;
+    line-height: 30px;
+    float: right;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+#county_chart_container {
+    display: inline-block;
+    clear: both;
+    text-align: center;
+}
+
+.county-chart {
+    display: inline-block;
+}
+
+.county-chart h3 {
+    text-align: left;
+}
+
+.selection_form_section {
+    padding-left: 3px;
+    padding-right: 3px;
+    /*border-left: 1px dotted black;*/
+}
+
+.form_content {
+    padding-left: 3px;
+    padding-right: 3px;
+    vertical-align: bottom;
+    border-left: 1px dotted black;
+}
+
+.form_hidden_header {
+    padding-left: 3px;
+    padding-right: 3px;
+    vertical-align: bottom;
+    border-left: 1px dotted black;
+}

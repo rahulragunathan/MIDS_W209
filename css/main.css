@@ -1,33 +1,32 @@
 @charset "utf-8";
+
 /* CSS Document */
 
-
 :root {
-	/* Primary color palette. Increasing numbers = lighter color
+    /* Primary color palette. Increasing numbers = lighter color
 	n = neutral colors. Not meant for highlighting a datapoint */
-	--palette-n-blue0: #24242D;
-	--palette-n-blue1: #484859;
-	--palette-n-blue2: #6C6B85;
-	--palette-n-blue3: #908FB2;
-	--palette-n-blue4: #A6A5C2;
-	--palette-n-blue5: #BCBCD1;
-	--palette-n-blue6: #D3D2E0;
-	--palette-n-blue7: #E9E9F0;
-	--palette-n-grey0: #595850;
-	--palette-n-grey1: #868478;
-	--palette-n-grey2: #B2B0A1;
-	--palette-n-grey3: #C2C0B4;
-	--palette-n-grey4: #D1D0C6;
-	--palette-n-grey5: #E0DFD9;
-	--palette-n-grey6: #F0EFEC;
-
-	/* h = highlight colors. Use to draw attention to datapoint */
-	--palette-h-green: #CCFFD9;
-	--palette-h-pink: #FF7FA9;
-	--palette-h-blue: #2C2AFF;
-	--palette-h-purple: #7C65B2;
-	--palette-h-yellow: #FFFC6A;
-	--palette-h-teal: #389DB2;
-	--palette-h-red: #FF2A53;
-	--palette-h-darkred: #B20C2C;
+    --palette-n-blue0: #24242D;
+    --palette-n-blue1: #484859;
+    --palette-n-blue2: #6C6B85;
+    --palette-n-blue3: #908FB2;
+    --palette-n-blue4: #A6A5C2;
+    --palette-n-blue5: #BCBCD1;
+    --palette-n-blue6: #D3D2E0;
+    --palette-n-blue7: #E9E9F0;
+    --palette-n-grey0: #595850;
+    --palette-n-grey1: #868478;
+    --palette-n-grey2: #B2B0A1;
+    --palette-n-grey3: #C2C0B4;
+    --palette-n-grey4: #D1D0C6;
+    --palette-n-grey5: #E0DFD9;
+    --palette-n-grey6: #F0EFEC;
+    /* h = highlight colors. Use to draw attention to datapoint */
+    --palette-h-green: #CCFFD9;
+    --palette-h-pink: #FF7FA9;
+    --palette-h-blue: #2C2AFF;
+    --palette-h-purple: #7C65B2;
+    --palette-h-yellow: #FFFC6A;
+    --palette-h-teal: #389DB2;
+    --palette-h-red: #FF2A53;
+    --palette-h-darkred: #B20C2C;
 }

@@ -1,0 +1,120 @@
+<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>Integration2</title>
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/int.css">
+</head>
+
+<body>
+	<div id="selection_form">
+		<form>
+			<div id="selection_form_total" class="inline_div selection_form_section">
+				<div class="form_content">
+					<h4 class="form_header"></h4>
+					<input type="radio" name="filter" value="TO.WTotl" checked id="All Water Use" onclick="update_all();">All Water Use
+				</div>
+			</div>
+			<div id="selection_form_source" class="inline_div selection_form_section">
+				<div class="form_content">
+					<h4 class="form_header">Water Source</h4>
+					<input type="radio" name="filter" value="TO.WSWTo" id="Surface Water" onclick="update_all();">Surface Water
+					<input type="radio" name="filter" value="TO.WGWTo" id="Ground Water" onclick="update_all();">Ground Water
+				</div>
+			</div>
+			<div id="selection_form_type" class="inline_div selection_form_section">
+				<div class="form_content">
+					<h4 class="form_header">Water Type</h4>
+					<input type="radio" name="filter" value="TO.WFrTo" id="Fresh Water" onclick="update_all();">Fresh Water
+					<input type="radio" name="filter" value="TO.WFrTo" id="Salinated Water" onclick="update_all();">Salinated Water
+				</div>
+			</div>
+			<div id="selection_form_industry" class="inline_div selection_form_section">
+				<div class="form_content">
+					<h4 class="form_header">Water Use by Industry</h4>
+					<input type="radio" name="filter" value="PS.Wtotl" id="Public Supply" onclick="update_all();">Public Supply
+					<input type="radio" name="filter" value="DO.TOTAL" id="Domestic" onclick="update_all();">Domestic
+					<input type="radio" name="filter" value="IR.WFrTo" id="Irrigation" onclick="update_all();">Irrigation
+					<input type="radio" name="filter" value="LI.WFrTo" id="Livestock" onclick="update_all();">Livestock
+					<input type="radio" name="filter" value="AQ.WTotl" id="Aquaculture" onclick="update_all();">Aquaculture
+					<input type="radio" name="filter" value="MI.Wtotl" id="Mining" onclick="update_all();">Mining
+					<input type="radio" name="filter" value="PT.Wtotl" id="Thermoelectric" onclick="update_all();">Thermoelectric
+				</div>
+			</div>
+		</form>
+		<div id="selection_form_percapita" class="inline_div selection_form_section">
+			<div class="form_content">
+				<h4 class="form_hidden_header"></h4>
+				<input type="checkbox" id="percap_check" value="1" onclick="update_all();">Display Per Capita
+			</div>
+		</div>
+	</div>
+	<div>
+		<br />
+		<div id="switch_graphs" onclick="switch_map_view();"></div>
+		<div id="map_full_div">
+			<h3 id="caption">[State, County]</h3>
+			<strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span>
+        : </strong><span id="county_hover_stat">100</span> million gallons per day
+			<p>Click on the map for details</p>
+			<div id="map_full_map">
+				<h4 class="loading">Loading...</h4>
+			</div>
+		</div>
+
+		<div id="force_directed_div">
+			<h3 id="caption_from_state">[State, County]</h3>
+			<strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span>
+        : </strong><span id="bubble_value">100</span> million gallons per day
+			<p>Click on the map for details</p>
+			<div id="state_map_views">
+				<svg id="force_directed_svg"></svg>
+				<div id="map_state_map"></div>
+			</div>
+		</div>
+
+		<div id="county_details_div" class="hidden overlay">
+			<div id="county_header_container">
+				<div id="county_header"></div>
+				<div id="county_closeBtn" onclick="closeNavClick('#county_details_div')">[close]</div>
+			</div>
+			<br />
+			<div id="sankey_full">
+				<h3>Water Flow: Source to Use</h3>
+				<div id="sankey_div"></div>
+			</div>
+			<div id="county_chart_container">
+				<div id="sg_chart" class="county-chart">
+					<h3>Water Source</h3>
+				</div>
+				<div id="fs_chart" class="county-chart">
+					<h3>Water Type</h3>
+				</div>
+				<div id="ind_chart" class="county-chart">
+					<h3>Usage by Industry</h3>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script src="https://d3js.org/d3.v4.min.js"></script>
+	<script src="https://unpkg.com/d3-sankey@0" type="text/javascript"></script>
+	<script type="text/javascript">
+		var d3_v4 = d3;
+	</script>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+	<script src="js/update_button.js" type="text/javascript"></script>
+	<script src="js/define-county-chart.js" type="text/javascript"></script>
+	<script src="js/county-details.js" type="text/javascript"></script>
+	<script src="http://eyeseast.github.io/visible-data/components/queue.js" type="text/javascript"></script>
+	<script src="js/state_map.js" type="text/javascript"></script>
+	<script src="js/full_map.js" type="text/javascript"></script>
+	<script src="js/force-directed.js" type="text/javascript"></script>
+	<script src="js/define_selection.js" type="text/javascript"></script>
+	<script src="js/sankey.js" type="text/javascript"></script>
+	<script src="js/initialize.js" type="text/javascript"></script>
+</body>
+
+</html>

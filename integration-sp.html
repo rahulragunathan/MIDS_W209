@@ -16,7 +16,7 @@
 			</div>
 			<div class = "form_content">
 				<input type = "radio" name ="filter" value = "TO.WTotl" checked id = "All Water" onclick= "update_all();">All Water Use
-			</div>		
+			</div>
 		</div>
 		<div id = "selection_form_source" class = "inline_div selection_form_section">
 			<div class = "form_header">
@@ -44,7 +44,7 @@
 				<input type = "radio" name ="filter" value = "PS.Wtotl" id ="Public Supply" onclick= "update_all();">Public Supply
 				<input type = "radio" name ="filter" value = "DO.TOTAL" id = "Domestic" onclick= "update_all();">Domestic
 				<input type = "radio" name ="filter" value = "IR.WFrTo" id = "Irrigation" onclick= "update_all();">Irrigation
-				<input type = "radio" name ="filter" value = "LI.WFrTo" id = "Livestock" onclick= "update_all();">Livestock 
+				<input type = "radio" name ="filter" value = "LI.WFrTo" id = "Livestock" onclick= "update_all();">Livestock
 				<input type = "radio" name ="filter" value = "AQ.WTotl" id = "Aquaculture" onclick= "update_all();">Aquaculture
 				<input type = "radio" name ="filter" value = "MI.Wtotl" id = "Mining" onclick= "update_all();">Mining
 				<input type = "radio" name ="filter" value = "PT.Wtotl" id = "Thermoelectric" onclick= "update_all();">Thermoelectric
@@ -54,11 +54,11 @@
 			<input type="checkbox" id="percap_check" value="1" onclick= "update_all();"> Display as per Capita?<br><br>
 		</div>
 
-	</form>	
+	</form>
 </div>
 <div>
 	<div id = "switch_graphs">not working</div>
-	
+
 	<div id = "map_full_div">
 		<h3 id="caption">[State, County]</h3>
 		<h4><strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span>
@@ -67,7 +67,7 @@
 			<h4 class="loading">Loading...</h4>
 		</div>
 	</div>
-	
+
 
 	<div id = "force_directed_div" class = "hidden">
 		<h3 id="bubble_name">State</h3>
@@ -75,7 +75,7 @@
         : </strong><span id="bubble_value">100</span> million gallons per day</h4>
 	<svg id = "force_directed_svg"></svg>
 	</div>
-	
+
 	<div id = "map_state_div" class = "hidden">
 		<h3 id="caption_from_state">[State, County]</h3>
 		<h4><strong><span id="selected_statistic"></span><span id="stat_per_capita"> per 1000 residents</span>
@@ -83,7 +83,7 @@
 		<div id = "map_state_map">
 		</div>
 	</div>
-	
+
 	<div id = "county_details_div" class = "hidden">
 		<div id = "county_header">County</div>
 		<div id="county_chart_container">
@@ -101,7 +101,7 @@
     		<h3>Water Flow: Source to Use</h3>
     		<div id="sankey_div"></div>
     	</div
-    	
+
 	</div>
 </div>
 

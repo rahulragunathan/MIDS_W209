@@ -1,49 +1,27 @@
-var current_window = "full_map";
-function update_button(){
+var current_window = "national_county";
 
-	if (current_window === "county_details_map_full"){
-			d3.select("#switch_graphs").text("Back to USA Map");
-			d3.select("#switch_graphs").on("click", function(){
-				d3.select("#map_full_div").classed("hidden", false);
-				d3.select("#force_directed_div").classed("hidden", true);
-				d3.select("#map_state_div").classed("hidden", true);
-				d3.select("#county_details_div").classed('hidden', true);
-			});
-		} else if (current_window === "county_details_map_state"){
-			d3.select("#switch_graphs").text("Back to State Map");
-			d3.select("#switch_graphs").on("click", function(){
-				d3.select("#map_full_div").classed("hidden", true);
-				d3.select("#force_directed_div").classed("hidden", true);
-				d3.select("#map_state_div").classed("hidden", false);
-				d3.select("#county_details_div").classed('hidden', true);
-			});
-		} else if (current_window === "map_state"){
-			d3.select("#switch_graphs").text("Back to State-Level USA Map");
-			d3.select("#switch_graphs").on("click", function(){
-				d3.select("#map_full_div").classed("hidden", true);
-				d3.select("#force_directed_div").classed("hidden", false);
-				d3.select("#map_state_div").classed("hidden", true);
-				d3.select("#county_details_div").classed('hidden', true);
-			});
-		} else if (current_window === "force_directed"){
-			d3.select("#switch_graphs").text("View County-Level USA Map");
-			d3.select("#switch_graphs").on("click", function(){
-				d3.select("#map_full_div").classed("hidden", false);
-				d3.select("#force_directed_div").classed("hidden", true);
-				d3.select("#map_state_div").classed("hidden", true)
-				d3.select("#county_details_div").classed('hidden', true);
-			});
-		} else if (current_window === "full_map"){
-			d3.select("#switch_graphs").text("Aggregate Data by State");
-			d3.select("#switch_graphs").on("click", function(){
-				d3.select("#map_full_div").classed("hidden", true);
-				d3.select("#force_directed_div").classed("hidden", false );
-				d3.select("#map_state_div").classed("hidden", true)
-				d3.select("#county_details_div").classed('hidden', true);
-			});
-			
-		} 
-	
-	
-	
-};
+function set_map_view() {
+
+    if (current_window == "national_county") {
+        d3.select("#switch_graphs").text("View State-Level USA Map");
+        d3.select("#map_full_div").classed("hidden", false);
+        d3.select("#force_directed_div").classed("hidden", true);
+    } else if (current_window == "state_aggr") {
+        d3.select("#switch_graphs").text("View County-Level USA Map");
+        d3.select("#map_full_div").classed("hidden", true);
+        d3.select("#force_directed_div").classed("hidden", false);
+    }
+}
+
+function switch_map_view() {
+    if (current_window == "national_county") {
+        current_window = "state_aggr";
+    } else if (current_window == "state_aggr") {
+        current_window = "national_county";
+    }
+    set_map_view();
+}
+
+function closeNavClick(div_id) {
+    d3.select(div_id).classed('hidden', true);
+}
