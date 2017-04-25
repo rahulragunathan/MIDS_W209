@@ -354,3 +354,7 @@ p, span, strong {
     vertical-align: bottom;
     border-left: 1px dotted black;
 }
+.fd_state{
+	stroke: #006EB4;
+	stroke-width: 2;
+}

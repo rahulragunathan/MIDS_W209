@@ -169,6 +169,7 @@ function graph_force_directed() {
             // .attr('width', sqWidth)
             // .attr('height', sqWidth)
             .style('fill', fillFn)
+			.classed('fd_state',true)
             .call(force.drag);
 
         selEnter.append("text")
