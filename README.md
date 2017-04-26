@@ -1,38 +1,24 @@
-## Welcome to GitHub Pages
+## Introduction
 
-You can use the [editor on GitHub](https://github.com/rahulragunathan/MIDS_W209/edit/master/README.md) to maintain and preview the content for your website in Markdown files.
+Water is a natural resource necessary for human life; however, due to the developed water supply system and (usually) abundant rainfall in the United States, many Americans do not frequently think about where their water comes from, how it is used, and how much is left. It is often taken for granted that water just flows out of the faucet on command. Easily visualizing the extent of the water distribution can help with public comprehension of this limited resource. 
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+## Who is this for?
 
-### Markdown
+Hopefully 
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+## The Visualition
 
-```markdown
-Syntax highlighted code block
+[Try it here!](integration2.html)
 
-# Header 1
-## Header 2
-### Header 3
+## The Data 
 
-- Bulleted
-- List
+All data used in this visualization is based on Circular 1405, "Estimated Use of Water in the United States in 2010" from the US Geological Survey for 2010. 
 
-1. Numbered
-2. List
+Maupin, M.A., Kenny, J.F., Hutson, S.S., Lovelace, J.K., Barber, N.L., and Linsey, K.S., 2014, Estimated use of water in the United States in 2010: U.S. Geological Survey Circular 1405, 56 p., 
+https://dx.doi.org/10.3133/cir1405
 
-**Bold** and _Italic_ and `Code` text
+Both the [report](https://pubs.usgs.gov/circ/1405/) and the [data](https://water.usgs.gov/watuse/data/2010/)  are available directly on the USGS  official site.
 
-[Link](url) and ![Image](src)
-```
-[Test Link](integration2.html)
+## The Team
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/rahulragunathan/MIDS_W209/settings). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://help.github.com/categories/github-pages-basics/) or [contact support](https://github.com/contact) and we’ll help you sort it out.
+This project was the 
