@@ -197,11 +197,11 @@ p, span, strong {
 }
 
 .bar {
-    fill: #409A99;
+    fill: #002E4C;
 }
 
 .bar:hover {
-    fill: green;
+    fill: #006EB4;
 }
 
 .hidden {
@@ -228,7 +228,7 @@ p, span, strong {
 }
 
 #switch_graphs {
-    background-color: #409A99;
+    background-color: #006EB4;
     width: 1500px;
     height: 40px;
     line-height: 40px;
@@ -237,7 +237,7 @@ p, span, strong {
 }
 
 #switch_graphs:hover {
-    background-color: #245757;
+    background-color: #002E4C;
 }
 
 #force_directed_div {
@@ -302,7 +302,7 @@ p, span, strong {
 }
 
 #county_header {
-    background-color: #409A99;
+    background-color: #006EB4;
     float: left;
     width: 95%;
     height: 10%;
@@ -312,7 +312,7 @@ p, span, strong {
 }
 
 #county_closeBtn {
-    background-color: #409A99;
+    background-color: #006EB4;
     width: 5%;
     height: 10%;
     line-height: 30px;
@@ -357,4 +357,10 @@ p, span, strong {
 .fd_state{
 	stroke: #006EB4;
 	stroke-width: 2;
+}
+#county_details_div{
+	border-color: #006EB4;
+	border-style: solid;
+    border-width: 2px;
+	
 }
