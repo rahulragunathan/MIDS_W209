@@ -23,7 +23,7 @@ Both the [report](https://pubs.usgs.gov/circ/1405/) and the [data](https://water
 
 ## The Team
 
-This project was the final project for W209: Data Visualization and Communication, as part of UC Berkeley's Masters of Information in Data Science (MIDS) Program.
+This visualization was the final project for W209: Data Visualization and Communication, as part of UC Berkeley's Masters of Information in Data Science (MIDS) Program.
 
 * Natarajan Shankar
 * Steve Pelkey
