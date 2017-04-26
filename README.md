@@ -6,7 +6,7 @@ Every five years since 1960, the US Geological Survey has published Circular rep
 
 ## Who is this for?
 
-Hopefully you! Water as a resource is vitally important to every human being. Our goal is to help make important, extensive government data available to all environmentally concerned U.S. residents who are curious about critical natural resources. 
+Hopefully you! Our goal is to help make important, extensive government data available to all environmentally concerned U.S. residents who are curious about critical natural resources. 
 
 ## The Visualization
 
