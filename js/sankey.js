@@ -55,7 +55,7 @@ function display_sankey() {
 
         link.append("title")
             .text(function(d) {
-                return d.source.name + " → " + d.target.name +
+                return d.source.name + " Used By " + d.target.name +
                     "\n" + format(d.value) + " Million Galllons per Day" +
                     "\nPercent of Total Water Use for This County: " + format((d.value / total_usage) * 100);
             });
