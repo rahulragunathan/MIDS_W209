@@ -23,7 +23,7 @@ function draw_full_map() {
         .style("width", width + "px")
         .style("height", height + "px");
 
-
+	var formatfloat = d3.format(",.3f");
     var q = queue()
         .defer(d3.json, "data/geo_county.json")
         .defer(d3.json, "data/geo_state.json")
@@ -140,7 +140,7 @@ function draw_full_map() {
             var name = [d.properties.name, d.properties.state].join(' County, ');
             state_selection = d.properties.state;
             d3.select("#county_hover").text(name);
-            d3.select("#county_hover_stat").text(d.properties[selection]);
+            d3.select("#county_hover_stat").text(formatfloat(d.properties[selection]));
             caption.html(name);
             d3.select('#tooltip_state_map').classed('hidden', false);
         }
