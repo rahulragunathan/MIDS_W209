@@ -17,9 +17,15 @@ Hopefully you! Our goal is to help make important, extensive government data ava
 All data used in this visualization is based on Circular 1405, "Estimated Use of Water in the United States in 2010" from the US Geological Survey for 2010. 
 
 Maupin, M.A., Kenny, J.F., Hutson, S.S., Lovelace, J.K., Barber, N.L., and Linsey, K.S., 2014, Estimated use of water in the United States in 2010: U.S. Geological Survey Circular 1405, 56 p., 
-https://dx.doi.org/10.3133/cir1405
+[https://dx.doi.org/10.3133/cir1405] (https://dx.doi.org/10.3133/cir1405)
 
 Both the [report](https://pubs.usgs.gov/circ/1405/) and the [data](https://water.usgs.gov/watuse/data/2010/) are available directly on the USGS  official site.
+
+## The Technology
+
+This visualization was built entirely using [D3.js](https://d3js.org/). 
+
+If you would like to build your own force-directed USA map, you can check out Steve's code on [bl.ocks.org](https://bl.ocks.org/spelkey1/d4ff4bf80aaabc9b440a0ffc234741ec) 
 
 ## The Team
 
